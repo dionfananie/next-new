@@ -3,7 +3,6 @@ import Link from 'next/link';
 
 const ItemBlog = ({ data }) => {
     const { title, description, main_image, id } = data;
-    console.log(data);
     return (
         <Link href={'/blogs/' + id} passHref>
             <div className="flex flex-col justify-center py-6">
