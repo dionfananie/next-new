@@ -1,7 +1,7 @@
 import ItemBlog from '@/components/Blogs/Item';
 
 export async function getStaticProps() {
-    const req = await fetch(process.env.NEXT_SERVER_URL + '/blogs');
+    const req = await fetch(process.env.NEXT_PUBLIC_URL + '/blogs');
     let res = await req.json();
     if (!res.length) res = [];
     return {
