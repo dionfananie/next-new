@@ -3,13 +3,14 @@ import Link from 'next/link';
 
 const ItemBlog = ({ data }) => {
     const { title, description, main_image, id } = data;
+    console.log(data);
     return (
         <Link href={'/blogs/' + id} passHref>
             <div className="flex flex-col justify-center py-6">
                 <div className="relative flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 max-w-xs md:max-w-3xl mx-auto border border-white bg-white">
                     <div className="w-full md:w-1/3 bg-white grid place-items-center">
                         <Image
-                            src={main_image.formats.thumbnail.url || ''}
+                            src={main_image?.formats?.thumbnail?.url || ''}
                             alt="tailwind logo"
                             className="rounded-xl"
                             width="400"
