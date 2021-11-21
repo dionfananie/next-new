@@ -1,6 +1,6 @@
 import ItemBlog from '@/components/Blogs/Item';
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
     const req = await fetch(process.env.NEXT_PUBLIC_URL + '/blogs');
     let res = await req.json();
     if (!res.length) res = [];

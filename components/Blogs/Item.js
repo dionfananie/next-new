@@ -1,59 +1,37 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 const ItemBlog = ({ data }) => {
-    const { title, description, thumbnail_image } = data;
+    const { title, description, main_image, id } = data;
     return (
-        <section className="text-gray-600 body-font overflow-hidden">
-            <div className="container px-5 py-24 mx-auto">
-                <div className="flex flex-wrap -m-12">
-                    <div className="p-12 md:w-1/2 flex flex-col items-start">
-                        <span className="inline-block py-1 px-2 rounded bg-indigo-50 text-indigo-500 text-xs font-medium tracking-widest">
-                            CATEGORY
-                        </span>
-                        <h2 className="sm:text-3xl text-2xl title-font font-medium text-gray-900 mt-4 mb-4">
-                            {title}
-                        </h2>
-                        <p className="leading-relaxed mb-8">{description}</p>
-                        <div className="flex items-center flex-wrap pb-4 mb-4 border-b-2 border-gray-100 mt-auto w-full">
-                            <a
-                                className="text-indigo-500 inline-flex items-center"
-                                href="google.com"
-                                passHref>
-                                Learn More
-                                <svg
-                                    className="w-4 h-4 ml-2"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                    strokeWidth="2"
-                                    fill="none"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round">
-                                    <path d="M5 12h14"></path>
-                                    <path d="M12 5l7 7-7 7"></path>
-                                </svg>
-                            </a>
+        <Link href={'/blogs/' + id} passHref>
+            <div className="flex flex-col justify-center py-6">
+                <div className="relative flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 max-w-xs md:max-w-3xl mx-auto border border-white bg-white">
+                    <div className="w-full md:w-1/3 bg-white grid place-items-center">
+                        <Image
+                            src={main_image.formats.thumbnail.url || ''}
+                            alt="tailwind logo"
+                            className="rounded-xl"
+                            width="400"
+                            height="400"
+                        />
+                    </div>
+                    <div className="w-full md:w-2/3 bg-white flex flex-col space-y-2 p-3">
+                        <div className="flex justify-between item-center">
+                            <p className="text-gray-500 font-medium hidden md:block">Vacations</p>
                         </div>
-                        <a href="google.com" className="inline-flex items-center" passHref>
-                            <Image
-                                alt="blog"
-                                width="40"
-                                height="40"
-                                src={thumbnail_image.formats.small.url || ''}
-                                class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center"
-                            />
-                            <span className="flex-grow flex flex-col pl-4">
-                                <span className="title-font font-medium text-gray-900">
-                                    Holden Caulfield
-                                </span>
-                                <span className="text-gray-400 text-xs tracking-widest mt-0.5">
-                                    UI DEVELOPER
-                                </span>
-                            </span>
-                        </a>
+                        <h3 className="font-black text-gray-800 md:text-3xl text-xl">{title}</h3>
+                        <p className="md:text-lg text-gray-500 text-base line-clamp-3">
+                            {description}
+                        </p>
+                        <p className="text-xl font-black text-gray-800">
+                            $110
+                            <span className="font-normal text-gray-600 text-base">/night</span>
+                        </p>
                     </div>
                 </div>
             </div>
-        </section>
+        </Link>
     );
 };
 
